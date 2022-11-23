@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users can view projects' do
+RSpec.feature 'Users can edit projects' do
   before do
     FactoryBot.create :project, {name: 'Visual Studio Code'}
 

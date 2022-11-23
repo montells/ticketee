@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Users can delete a new project' do
   scenario 'successfully' do
-    FactoryBot.create :project, name: 'Visual Studio Code'
+    project = FactoryBot.create :project, name: 'Visual Studio Code'
 
-    visit '/'
-    click_link 'Visual Studio Code'
+    visit project_path(project)
     click_link 'Delete Project'
 
     expect(page).to have_content('Project has been deleted.')
