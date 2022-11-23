@@ -5,7 +5,7 @@ RSpec.feature 'Users can view projects' do
     project = FactoryBot.create(:project, name: 'Visual Studio Code')
 
     visit '/'
-    click_link 'Visual Studio Code'
+    click_link "show_project_#{project.id}"
     expect(page.current_url).to eq project_url(project)
   end
 end
