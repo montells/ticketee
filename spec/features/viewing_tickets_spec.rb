@@ -12,11 +12,10 @@ RSpec.feature 'Users can view tickects' do
                       name: 'Standards compliance',
                       description: "Isn't a joke.")
 
-    visit '/'
   end
 
   scenario 'for a given project' do
-    click_link 'Visual Studio Code'
+    visit project_path Project.first
 
     expect(page).to have_content('Make it shiny!')
     puts page.body
