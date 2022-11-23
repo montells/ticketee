@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Users can edit projects' do
   before do
-    FactoryBot.create :project, {name: 'Visual Studio Code'}
+    project = FactoryBot.create :project, {name: 'Visual Studio Code'}
 
-    visit '/'
-    click_link 'Visual Studio Code'
+    visit project_path(project)
     click_link 'Edit Project'
   end
 
