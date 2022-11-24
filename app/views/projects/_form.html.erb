@@ -1,14 +1,5 @@
 <%= form_with(model: @project, class: 'contents') do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-      <ul>
-        <% @project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end  %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/error_messages', entity: project %>
   <div class="my5">
     <%= form.label :name %>
     <%= form.text_field :name, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
