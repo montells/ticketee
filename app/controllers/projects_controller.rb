@@ -15,12 +15,15 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    if @project.save
-      flash[:notice] = 'Project has been created.'
-      redirect_to @project
-    else
-      flash.now[:alert] = 'Project has not been created.'
-      render 'new'
+    respond_to do |format|
+      if @project.save
+        format.html {redirect_to @project, notice: 'Project has been created.' }
+      else
+        format.html do
+          flash.now[:alert] = 'Project has not been created.'
+          render :new, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -28,12 +31,15 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)
-      flash[:notice] = 'Project has been updated'
-      redirect_to @project
-    else
-      flash.now[:alert] = "Project has not been updated"
-      render :edit
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to @project, notice: 'Project has been updated' }
+      else
+        format.html do
+          flash.now[:alert] = "Project has not been updated"
+          render :edit, status: :unprocessable_entity
+        end
+      end
     end
   end
 

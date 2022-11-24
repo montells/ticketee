@@ -35,9 +35,7 @@
   </nav>
   <hr/>
   <div>
-    <% flash.each do |_key, message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= render 'layouts/flash_messages' %>
     <%= yield %>
   </div>
 </div>
