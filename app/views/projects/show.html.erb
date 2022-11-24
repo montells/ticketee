@@ -15,7 +15,7 @@
 <%= link_to 'Delete Project', project_path(@project),
             class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium",
             method: :delete,
-            data: { confirm: 'Are you sure you want to delete this project?' } %>
+            data: { "turbo-method": :delete, turbo_confirm: 'Are you sure you want to delete this project' } %>
 <%= link_to 'Back to projects', projects_path,
             class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
