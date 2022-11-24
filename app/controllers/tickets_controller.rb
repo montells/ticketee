@@ -11,24 +11,30 @@ class TicketsController < ApplicationController
   def edit; end
 
   def update
-    if @ticket.update(ticket_params)
-      flash[:notice] = "Ticket has been updated."
-      redirect_to [@project, @ticket]
-    else
-      flash.now[:alert] = 'Ticket has not been updated.'
-      render :edit
+    respond_to do |format|
+      if @ticket.update(ticket_params)
+        format.html { redirect_to [@project, @ticket], notice: "Ticket has been updated." }
+      else
+        format.html do
+          flash.now[:alert] = 'Ticket has not been updated.'
+          render :edit, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def create
     @ticket = @project.tickets.build(ticket_params)
 
-    if @ticket.save
-      flash[:notice] = 'Ticket has been created'
-      redirect_to [@project, @ticket]
-    else
-      flash.now[:alert] = 'Ticket has not been created.'
-      render :new
+    respond_to do |format|
+      if @ticket.save
+        format.html { redirect_to [@project, @ticket], notice: 'Ticket has been created' }
+      else
+        format.html do
+          flash.now[:alert] = 'Ticket has not been created.'
+          render :new, status: :unprocessable_entity
+        end
+      end
     end
   end
 
