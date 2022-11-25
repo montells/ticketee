@@ -25,6 +25,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = @project.tickets.build(ticket_params)
+    @ticket.author = current_user
 
     respond_to do |format|
       if @ticket.save

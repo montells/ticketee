@@ -1,7 +1,8 @@
 <div class="ticket">
-  <%= render @ticket %>
   <h1><%= @project.name %></h1>
   <h2><%= @ticket.name %></h2>
+
+  <%= render @ticket %>
 
   <%= link_to 'Edit Ticket', [:edit, @project, @ticket],
               class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

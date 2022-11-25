@@ -9,9 +9,17 @@
     <%= ticket.description %>
   </p>
 
+  <hr class="mt-6">
+    <p class="my-5">
+      <strong class="font-medium mb-1">Author: </strong><%= ticket.author.email %>
+    </p>
+    <p class="my-5">
+      <strong class="font-medium mb-1">Created at: </strong><%= time_ago_in_words(ticket.created_at) %> ago.
+    </p>
+  <hr class="mt-6">
+
   <% if action_name != "show" %>
     <%= link_to "Show this ticket", [project, ticket], class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit Ticket', [:edit, project, ticket], class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
   <% end %>
 </div>
