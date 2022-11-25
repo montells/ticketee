@@ -22,7 +22,7 @@
 <ul class="tickets">
   <% @project.tickets.each do |ticket| %>
     <li>
-      #<%= ticket.id %> - <%= link_to ticket.name, [@project, ticket] %>
+      <b>#<%= ticket.id %></b> - <%= link_to ticket.name, [@project, ticket] %> <b>Author:</b> <%= ticket.author.email %>
     </li>
   <% end %>
 </ul>
