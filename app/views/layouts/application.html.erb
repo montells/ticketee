@@ -37,6 +37,10 @@
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
           <%= link_to 'Projects', projects_path, class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" %>
+          <% admins_only do %>
+            <%= link_to 'Admin', admin_root_path, class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" %>
+
+          <% end %>
         </div>
         <div>
           <div class=<%= user_signed_in? ? 'invisible' : '' %>>
