@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update archive]
   def index
-    @users = User.order(:email)
+    @users = User.active.order(:email)
   end
 
   def show;  end
@@ -39,6 +39,18 @@ class Admin::UsersController < ApplicationController
           render :edit, status: :unprocessable_entity
         end
       end
+    end
+  end
+
+  def archive
+    if @user == current_user
+      flash[:alert] = "You can not archive yourself!"
+    else
+      flash[:notice] = "User has been archived"
+      @user.archive!
+    end
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
     end
   end
 
