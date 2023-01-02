@@ -6,16 +6,22 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Description:</strong>
-    <%= ticket.description %>
+    <%= simple_format(ticket.description) %>
   </p>
 
+  <% if ticket.attachment.present? %>
+    <strong class="block font-medium mb-1">Attachment</strong>
+    <%= link_to(ticket.attachment.filename, rails_blob_path(ticket.attachment, disposition: 'attachment')) %>
+    (<%= number_to_human_size(ticket.attachment.blob.byte_size) %>)
+  <% end %>
+
   <hr class="mt-6">
-    <p class="my-5">
-      <strong class="font-medium mb-1">Author: </strong><%= ticket.author.email %>
-    </p>
-    <p class="my-5">
-      <strong class="font-medium mb-1">Created at: </strong><%= time_ago_in_words(ticket.created_at) %> ago.
-    </p>
+  <p class="my-5">
+    <strong class="font-medium mb-1">Author: </strong><%= ticket.author.email %>
+  </p>
+  <p class="my-5">
+    <strong class="font-medium mb-1">Created at: </strong><%= time_ago_in_words(ticket.created_at) %> ago.
+  </p>
   <hr class="mt-6">
 
   <% if action_name != "show" %>

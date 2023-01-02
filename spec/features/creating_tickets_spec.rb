@@ -38,4 +38,14 @@ RSpec.feature 'Users can create a new Tickets' do
     expect(page).to have_content('Ticket has not been created.')
     expect(page).to have_content('Description is too short')
   end
+
+  scenario 'with an attachment' do
+    fill_in :ticket_name, with: 'Add documentation for blink tag'
+    fill_in :ticket_description, with: 'The blink task has a speed attribute'
+    attach_file 'ticket_attachment', 'spec/fixtures/speed.txt'
+
+    click_button 'Create Ticket'
+
+    expect(page).to have_content 'speed.txt'
+  end
 end
